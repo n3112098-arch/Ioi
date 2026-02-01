@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для самой лучшей мамы</title>
+    <style>
+        /* Стили страницы */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            color: #fff;
+            text-align: center;
+        }
+
+        .container {
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            max-width: 80%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        /* Стили сердечек */
+        .heart {
+            position: absolute;
+            top: -50px;
+            color: #ff4d4d;
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Мамочка, я тебя люблю! ❤️</h1>
+        <p>Пусть каждый твой день будет наполнен радостью и нежностью.</p>
+        <p>Ты самая лучшая в мире!</p>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            // Выбираем случайный символ сердечка
+            const hearts = ['❤️', '💖', '💗', '💓', '✨'];
+            heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+            
+            // Рандомное положение по горизонтали
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // Рандомный размер
+            const size = Math.random() * 20 + 10 + 'px';
+            heart.style.fontSize = size;
+            
+            // Рандомная длительность анимации (скорость падения)
+            const duration = Math.random() * 3 + 2 + 's';
+            heart.style.animationDuration = duration;
+            
+            // Рандомная прозрачность
+            heart.style.opacity = Math.random();
+
+            document.body.appendChild(heart);
+
+            // Удаляем сердечко после завершения анимации, чтобы не перегружать память
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Создаем сердечки через интервал
+        setInterval(createHeart, 300);
+
+        // Также создаем сердечко при клике
+        document.addEventListener('click', (e) => {
+            for(let i = 0; i < 5; i++) {
+                createHeart();
+            }
+        });
+    </script>
+</body>
+</html>
